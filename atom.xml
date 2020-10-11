@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://ljiay.github.io</id>
+    <title>ljy&apos;s blog</title>
+    <updated>2020-10-11T11:58:30.990Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://ljiay.github.io"/>
+    <link rel="self" href="https://ljiay.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://ljiay.github.io/images/avatar.png</logo>
+    <icon>https://ljiay.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2020, ljy&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[hugo创建客人博客基本命令]]></title>
+        <id>https://ljiay.github.io/post/hugo-chuang-jian-ke-ren-bo-ke-ji-ben-ming-ling/</id>
+        <link href="https://ljiay.github.io/post/hugo-chuang-jian-ke-ren-bo-ke-ji-ben-ming-ling/">
+        </link>
+        <updated>2020-10-11T11:38:30.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="创建-生成站点">创建 生成站点</h4>
+<p><code>hugo new site name</code></p>
+<p>name是工程文件夹名称</p>
+<h4 id="设置主题">设置主题</h4>
+<p>下载主题</p>
+<p><code>git clone url themes/themeName</code></p>
+<p>url是主题github下载链接</p>
+<p>themeName是主题的名字</p>
+<h4 id="新建文章">新建文章</h4>
+<p><code>hugo new post/fileName.md</code></p>
+<p>在post文件夹下新建一个名为fileName.md的文件</p>
+<h4 id="本地启动">本地启动</h4>
+<p><code>hugo server -t themeName --buildDrafts</code></p>
+<p>-t是主题参数 themeName是主题名字</p>
+<h4 id="部署github">部署github</h4>
+<ol>
+<li>生成public文件夹</li>
+</ol>
+<p><code>hugo --theme=themeName --baseUrl=&quot;url&quot; --buildDrafts</code></p>
+<p>themeName是主题名字</p>
+<p>url是仓库地址(https://...github.io/)</p>
+<p>名称执行结束后会生成public文件夹，接下来将public文件夹的内容上传至仓库</p>
+<ol start="2">
+<li>上传至仓库（git操作）</li>
+</ol>
+<p>切换到public文件夹<br>
+<code>cd public</code><br>
+<code>git init</code><br>
+<code>git add .</code><br>
+<code>git commit -m &quot;说明文字&quot;</code><br>
+<code>git remote add origin https://github.com/ljiay/ljiay.github.io.git</code><br>
+<code>git push -u origin master</code></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[批处理-将MP3转换为wav格式]]></title>
+        <id>https://ljiay.github.io/post/pi-chu-li-jiang-mp3-zhuan-huan-wei-wav-ge-shi/</id>
+        <link href="https://ljiay.github.io/post/pi-chu-li-jiang-mp3-zhuan-huan-wei-wav-ge-shi/">
+        </link>
+        <updated>2020-10-10T08:52:06.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p><a href="%22https://blog.csdn.net/qq_39516859/article/details/81843707%22">CSDN原文档</a></p>
+<ol>
+<li>运用批处理将文件夹里的所有MP3文件转换为wav文件。批处理程序和需要转换的MP3文件放在同一目录下<br>
+保存为.cmd文件<br>
+更改起始位置即可</li>
+</ol>
+<pre><code>echo off &amp; color 0A
+::指定起始文件夹
+set DIR=&quot;D:\hanzi&quot;
+echo DIR=%DIR%
+:: 参数 /R 表示需要遍历子文件夹,去掉表示不遍历子文件夹
+:: %%f 是一个变量,类似于迭代器,但是这个变量只能由一个字母组成,前面带上%%
+:: 括号中是通配符,可以指定后缀名,*.*表示所有文件
+for /R %DIR% %%f in (*.mp3) do ( 
+echo %%f
+ffmpeg  -i  %%f %%f.wav
+del %%f
+)
+pause
+</code></pre>
+<ol start="2">
+<li>会发现生成的wav文件后缀上是.mp3.wav，现我们想只保留.wav后缀，那又如何处理呢？<br>
+此处我们还是调用命令进行处理，命令如下：<br>
+<code>ren *.wav *.&amp; ren *.mp3 *. &amp;ren *. *.wav</code></li>
+</ol>
+]]></content>
+    </entry>
+</feed>
